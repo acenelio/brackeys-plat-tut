@@ -10,6 +10,9 @@ public class Weapon : MonoBehaviour {
 
     public Transform BulletTrailPrefab;
 
+    public float effectSpawnRate = 10;
+
+    float timeToSpawnEffect = 0;
     float timeToFire = 0;
     Transform firePoint;
     Quaternion rotation;
@@ -46,11 +49,14 @@ public class Weapon : MonoBehaviour {
         // como nao implementei o braco que gira, vou calcular a rotacao aqui
         rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg);
 
-        Effect();
+        if (Time.time >= timeToSpawnEffect) {
+            Effect();
+            timeToSpawnEffect = Time.time + 1 / effectSpawnRate;
+        }
 
-        Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition) * 100, Color.cyan);
+        //Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition) * 100, Color.cyan);
         if (hit.collider != null) {
-            Debug.DrawLine(firePointPosition, hit.point, Color.red);
+            //Debug.DrawLine(firePointPosition, hit.point, Color.red);
         }
     }
 
