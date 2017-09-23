@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour {
     public LayerMask whatToHit;
 
     public Transform BulletTrailPrefab;
+    public Transform MuzzleFlashPrefab;
 
     public float effectSpawnRate = 10;
 
@@ -62,6 +63,11 @@ public class Weapon : MonoBehaviour {
 
     void Effect() {
         Instantiate(BulletTrailPrefab, firePoint.position, rotation);
+        Transform clone = Instantiate(MuzzleFlashPrefab, firePoint.position, rotation) as Transform;
+        clone.parent = firePoint;
+        float size = Random.Range(0.6f, 0.9f);
+        clone.localScale = new Vector3(size, size, size);
+        Destroy(clone.gameObject, 0.05f);
     }
 }
 
