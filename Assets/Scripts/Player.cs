@@ -22,9 +22,8 @@ public class Player : MonoBehaviour {
     public void DamagePlayer(int damage) {
         playerStats.Health -= damage;
         if (playerStats.Health <= 0) {
-            GameMaster.KillPlayer(this);
+            GM.instance.KillPlayer(this);
         }
     }
-
 
 }
