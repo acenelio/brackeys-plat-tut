@@ -50,11 +50,6 @@ public class Weapon : MonoBehaviour {
         // como nao implementei o braco que gira, vou calcular a rotacao aqui
         rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dif.y, dif.x) * Mathf.Rad2Deg);
 
-        if (Time.time >= timeToSpawnEffect) {
-            Effect();
-            timeToSpawnEffect = Time.time + 1 / effectSpawnRate;
-        }
-
         //Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition) * 100, Color.cyan);
         if (hit.collider != null) {
             //Debug.DrawLine(firePointPosition, hit.point, Color.red);
@@ -64,10 +59,32 @@ public class Weapon : MonoBehaviour {
                 enemy.DamageEnemy(Damage);
             }
         }
+
+        if (Time.time >= timeToSpawnEffect) {
+            Vector3 hitPos;
+
+            if (hit.collider == null) {
+                hitPos = dif * 100;
+            }
+            else {
+                hitPos = hit.point;
+            }
+
+            Effect(hitPos);
+            timeToSpawnEffect = Time.time + 1 / effectSpawnRate;
+        }
     }
 
-    void Effect() {
-        Instantiate(BulletTrailPrefab, firePoint.position, rotation);
+    void Effect(Vector3 hitPosition) {
+        Transform trail = Instantiate(BulletTrailPrefab, firePoint.position, rotation) as Transform;
+        LineRenderer lr = trail.GetComponent<LineRenderer>();
+
+        if (lr != null) {
+            // setPosition define os valores das posicoes da lista Positions de lineRenderer
+            lr.SetPosition(0, firePoint.position);
+            lr.SetPosition(1, hitPosition);
+        }
+
         Transform clone = Instantiate(MuzzleFlashPrefab, firePoint.position, rotation) as Transform;
         clone.parent = firePoint;
         float size = Random.Range(0.6f, 0.9f);
