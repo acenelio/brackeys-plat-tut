@@ -42,4 +42,9 @@ public class GM : MonoBehaviour {
         Camera.main.GetComponent<Camera2DFollow>().target = newPlayer;
         Destroy(particles.gameObject, respawnParticlesWaitTime);
     }
+
+    public void KillEnemy(Enemy enemy) {
+        Destroy(enemy.gameObject);
+    }
+
 }

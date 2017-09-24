@@ -30,12 +30,17 @@ public class EnemyAI : MonoBehaviour {
     // The waypoint we are currently moving towards
     private int currentWaypoint = 0;
 
+    private bool searchingForPlayer = false;
+
     void Start() {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
         if (target == null) {
-            Debug.LogError("No target set to EnemyAI");
+            if (!searchingForPlayer) {
+                searchingForPlayer = true;
+                StartCoroutine(SearchForPlayer());
+            }
             return;
         }
 
@@ -45,16 +50,34 @@ public class EnemyAI : MonoBehaviour {
         StartCoroutine(UpdatePath());
     }
 
+    IEnumerator SearchForPlayer() {
+        GameObject obj = GameObject.FindGameObjectWithTag("Player");
+        if (obj == null) {
+            yield return new WaitForSeconds(0.5f);
+            StartCoroutine(SearchForPlayer());
+        }
+        else {
+            target = obj.transform;
+            searchingForPlayer = false;
+            StartCoroutine(UpdatePath());
+            yield return null;
+        }
+    }
+
     IEnumerator UpdatePath() {
         if (target == null) {
-            //TODO: Insert a player search here
-            yield return false;
+            if (!searchingForPlayer) {
+                searchingForPlayer = true;
+                StartCoroutine(SearchForPlayer());
+            }
+            yield return null;
         }
+        else {
+            seeker.StartPath(transform.position, target.position, OnPathComplete);
 
-        seeker.StartPath(transform.position, target.position, OnPathComplete);
-
-        yield return new WaitForSeconds(1f / updateRate);
-        StartCoroutine(UpdatePath());
+            yield return new WaitForSeconds(1f / updateRate);
+            StartCoroutine(UpdatePath());
+        }
     }
 
     public void OnPathComplete(Path p) {
@@ -67,7 +90,10 @@ public class EnemyAI : MonoBehaviour {
 
     void FixedUpdate() {
         if (target == null) {
-            //TODO: Insert a player search here
+            if (!searchingForPlayer) {
+                searchingForPlayer = true;
+                StartCoroutine(SearchForPlayer());
+            }
             return;
         }
 
