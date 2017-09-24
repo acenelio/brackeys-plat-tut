@@ -261,6 +261,7 @@ MonoBehaviour:
     type: 2}
   MuzzleFlashPrefab: {fileID: 4167188140062974, guid: f581e72760e54c84e874a9fec5ebc911,
     type: 2}
+  HitPrefab: {fileID: 4221009405505802, guid: 0ea0bbfcf7e728b4bb7971713877dab0, type: 2}
   effectSpawnRate: 10
 --- !u!114 &114337117416713780
 MonoBehaviour:

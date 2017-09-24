@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour {
 
     public Transform BulletTrailPrefab;
     public Transform MuzzleFlashPrefab;
+    public Transform HitPrefab;
 
     public float effectSpawnRate = 10;
 
@@ -63,20 +64,23 @@ public class Weapon : MonoBehaviour {
 
         if (Time.time >= timeToSpawnEffect) {
             Vector3 hitPos;
+            Vector3 hitNormal;
 
             if (hit.collider == null) {
                 hitPos = dif * 100;
+                hitNormal = Vector3.zero;
             }
             else {
                 hitPos = hit.point;
+                hitNormal = hit.normal;
             }
 
-            Effect(hitPos);
+            Effect(hitPos, hitNormal);
             timeToSpawnEffect = Time.time + 1 / effectSpawnRate;
         }
     }
 
-    void Effect(Vector3 hitPosition) {
+    void Effect(Vector3 hitPosition, Vector3 hitNormal) {
         Transform trail = Instantiate(BulletTrailPrefab, firePoint.position, rotation) as Transform;
         LineRenderer lr = trail.GetComponent<LineRenderer>();
 
@@ -87,6 +91,11 @@ public class Weapon : MonoBehaviour {
         }
 
         Destroy(trail.gameObject, 0.04f);
+
+        if (hitNormal != Vector3.zero) {
+            Transform hitParticles = Instantiate(HitPrefab, hitPosition, Quaternion.FromToRotation(Vector3.up, hitNormal)) as Transform;
+            Destroy(hitParticles.gameObject, 1f);
+        }
 
         Transform clone;
         if (!GM.instance.player.GetComponent<PlatformerCharacter2D>().m_FacingRight) {
