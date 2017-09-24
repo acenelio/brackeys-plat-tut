@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace UnityStandardAssets._2D
 {
-    public class PlatformerCharacter2D : MonoBehaviour
-    {
+    public class PlatformerCharacter2D : MonoBehaviour {
         [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
         [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
         [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
@@ -18,10 +17,11 @@ namespace UnityStandardAssets._2D
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
-        private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+        public bool m_FacingRight { get; private set; }  // For determining which way the player is currently facing.
 
         private void Awake()
         {
+            m_FacingRight = true;
             // Setting up references.
             m_GroundCheck = transform.Find("GroundCheck");
             m_CeilingCheck = transform.Find("CeilingCheck");

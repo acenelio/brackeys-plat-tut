@@ -11,6 +11,8 @@ public class GM : MonoBehaviour {
     public Transform spawParticlePrefab;
     public Transform spawnPoint;
 
+    public Transform player;
+
     public float respawnWaitTime = 1.5f;
     public float respawnParticlesWaitTime = 3f;
     public float cameraPositioningWaitTime = 1.5f;
@@ -23,6 +25,7 @@ public class GM : MonoBehaviour {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        RespawnPlayer();
     }
 
     public void RespawnPlayer() {
@@ -40,6 +43,7 @@ public class GM : MonoBehaviour {
         Transform newPlayer = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation) as Transform;
         Transform particles = Instantiate(spawParticlePrefab, spawnPoint.position, spawnPoint.rotation) as Transform;
         Camera.main.GetComponent<Camera2DFollow>().target = newPlayer;
+        player = newPlayer;
         Destroy(particles.gameObject, respawnParticlesWaitTime);
     }
 

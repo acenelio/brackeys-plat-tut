@@ -542,7 +542,7 @@ Transform:
   - {fileID: 408587046}
   - {fileID: 155144140}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &111526442
 GameObject:
@@ -605,6 +605,7 @@ MonoBehaviour:
   spawParticlePrefab: {fileID: 4130375562698496, guid: 0f5df0563ff5e4840bcf0915cb4b3fe4,
     type: 2}
   spawnPoint: {fileID: 690551326}
+  player: {fileID: 4182791534226736, guid: 02f7a5da35a1f744dbbc56b3ec7bd577, type: 2}
   respawnWaitTime: 2
   respawnParticlesWaitTime: 3
   cameraPositioningWaitTime: 1.5
@@ -2268,7 +2269,7 @@ Transform:
   m_Children:
   - {fileID: 769001259}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1224434947
 GameObject:
@@ -2371,7 +2372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8238cc53530b64fbb7828c3d3bb591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1295387746}
+  target: {fileID: 0}
   damping: 0.3
   lookAheadFactor: 3
   lookAheadReturnSpeed: 0.5
@@ -2448,11 +2449,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!4 &1295387746 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4182791534226736, guid: 02f7a5da35a1f744dbbc56b3ec7bd577,
-    type: 2}
-  m_PrefabInternal: {fileID: 1383767047}
 --- !u!1 &1328416654
 GameObject:
   m_ObjectHideFlags: 0
@@ -2621,53 +2617,6 @@ Transform:
   m_Father: {fileID: 1180911810}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1383767047
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4182791534226736, guid: 02f7a5da35a1f744dbbc56b3ec7bd577, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 2.0300002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4182791534226736, guid: 02f7a5da35a1f744dbbc56b3ec7bd577, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4182791534226736, guid: 02f7a5da35a1f744dbbc56b3ec7bd577, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4182791534226736, guid: 02f7a5da35a1f744dbbc56b3ec7bd577, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4182791534226736, guid: 02f7a5da35a1f744dbbc56b3ec7bd577, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4182791534226736, guid: 02f7a5da35a1f744dbbc56b3ec7bd577, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4182791534226736, guid: 02f7a5da35a1f744dbbc56b3ec7bd577, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4182791534226736, guid: 02f7a5da35a1f744dbbc56b3ec7bd577, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114162479484137712, guid: 02f7a5da35a1f744dbbc56b3ec7bd577,
-        type: 2}
-      propertyPath: fireRate
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 02f7a5da35a1f744dbbc56b3ec7bd577, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1417719537
 GameObject:
   m_ObjectHideFlags: 0
@@ -3059,13 +3008,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4022920626741098, guid: eca4fb2d028fef5488a94b1eb8f954fb, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114375298735077660, guid: eca4fb2d028fef5488a94b1eb8f954fb,
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1295387746}
+      objectReference: {fileID: 0}
     - target: {fileID: 114375298735077660, guid: eca4fb2d028fef5488a94b1eb8f954fb,
         type: 2}
       propertyPath: speed

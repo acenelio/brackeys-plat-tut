@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets._2D;
 
 public class Weapon : MonoBehaviour {
 
@@ -85,7 +86,17 @@ public class Weapon : MonoBehaviour {
             lr.SetPosition(1, hitPosition);
         }
 
-        Transform clone = Instantiate(MuzzleFlashPrefab, firePoint.position, rotation) as Transform;
+        Destroy(trail.gameObject, 0.04f);
+
+        Transform clone;
+        if (!GM.instance.player.GetComponent<PlatformerCharacter2D>().m_FacingRight) {
+            Vector3 vet = rotation.eulerAngles;
+            Quaternion rot = Quaternion.Euler(vet.x, vet.y, vet.z + 180);
+            clone = Instantiate(MuzzleFlashPrefab, firePoint.position, rot) as Transform;
+        }
+        else {
+            clone = Instantiate(MuzzleFlashPrefab, firePoint.position, rotation) as Transform;
+        }
         clone.parent = firePoint;
         float size = Random.Range(0.6f, 0.9f);
         clone.localScale = new Vector3(size, size, size);
