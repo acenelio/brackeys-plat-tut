@@ -602,7 +602,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4182791534226736, guid: 02f7a5da35a1f744dbbc56b3ec7bd577,
     type: 2}
+  spawParticlePrefab: {fileID: 4130375562698496, guid: 0f5df0563ff5e4840bcf0915cb4b3fe4,
+    type: 2}
   spawnPoint: {fileID: 690551326}
+  respawnWaitTime: 2
+  respawnParticlesWaitTime: 3
+  cameraPositioningWaitTime: 1.5
 --- !u!1 &155144139
 GameObject:
   m_ObjectHideFlags: 0
